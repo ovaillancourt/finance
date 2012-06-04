@@ -2,9 +2,8 @@
 tr(class=edit ? 'edit-item' : 'add-item', data-id: item.id)
   - var name = edit ? 'item[' + item.id + ']' : 'item'
   td
-    - if (edit)
-      a.toggle(class='credit' == item.type ? 'active' : '') toggle
-      input.hide(type='text', name=name + '[type]', value=item.type || 'debit')
+    a.toggle(class='credit' == item.type ? 'active' : '') toggle
+    input.hide(type='text', name=name + '[type]', value=item.type || 'debit')
   td.entity
     input(type='text', name=name + '[entity]', placeholder='from / to', value=item.entity)
   td.amount

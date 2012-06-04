@@ -9,7 +9,7 @@
     , "express-expose": ">= 0.0.1"
     , "jade": "0.9.x"
     , "github-flavored-markdown": "1.0.0"
-    , "stylus": "0.11.x"
+    , "stylus": "0.27.x"
     , "nib": "0.0.x"
   },
   "engines": { "node": ">= 0.4.4" }

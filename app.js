@@ -50,7 +50,7 @@ app.configure(function(){
   app.set('title', 'Financial Management');
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.logger('  \033[90m:method\033[0m \033[36m:url\033[0m \033[90m:response-time\033[0m'));
+  // app.use(express.logger('  \033[90m:method\033[0m \033[36m:url\033[0m \033[90m:response-time\033[0m'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(stylus.middleware({ src: __dirname + '/public', compile: compile }));
@@ -67,7 +67,7 @@ app.configure(function(){
 app.configure('development', function(){
   app.set('title', "Finances d'Olivier et Virginie");
   app.enable('cache views');
-  db = new Database('/Users/ovaillancourt/Dropbox/Finances-2012');
+  db = new Database('/Users/ovaillancourt/Dropbox/Finances-2012/expenses.db');
   app.use(express.errorHandler({ dumpExceptions: true }));
 });
 

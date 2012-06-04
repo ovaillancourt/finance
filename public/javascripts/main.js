@@ -75,8 +75,9 @@ j(function(){
   j('#menu .charts a').click(function(){
     $.get('/month/' + express.month + '/items', function(items){
       var dialog = new Dialog('#chart');
-      categoryChart(items, dialog.el.find('.chart').get(0), 750, 400);
       dialog.show();
+      categoryChart(items, dialog.el.find('.chart').get(0), 750, 400);
+      dialog.resize();
     });
     return false;
   });
@@ -92,7 +93,8 @@ j(function(){
       , tail = rows.slice(-2)
       , direction = self.hasClass('asc')
         ? 'desc'
-        : 'asc';
+        : 'asc'
+      , numeric = self.hasClass('numeric');
 
     table
       .find('th')
@@ -104,13 +106,30 @@ j(function(){
       .removeClass('desc')
       .addClass(direction);
 
-    items.sort(function(a, b){
+    function sortNumeric(a, b){
       var a = parseInt(j(a.cells[i]).find('input').val(), 10)
         , b = parseInt(j(b.cells[i]).find('input').val(), 10);
+
+      return  'asc' == direction
+      ? a - b
+      : b - a;                
+    }
+
+    function sortString(a,b){
+      var a = j(a.cells[i]).find('input').val().toString();
+      var b = j(b.cells[i]).find('input').val().toString();
+
+      var agb = a > b ? 1 : -1;
+
       return 'asc' == direction
-        ? a - b
-        : b - a;
-    }).each(function(i, row){
+      ? agb
+      : -agb;      
+    }
+
+    items.sort( numeric 
+      ? sortNumeric 
+      : sortString
+    ).each(function(i, row){
       tbody.append(row);
     });
 
