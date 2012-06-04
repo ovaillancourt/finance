@@ -59,15 +59,15 @@ app.configure(function(){
   app.helpers(require('./lib/helpers'));
 });
 
-app.configure('development', function(){
-  db = new Database('/tmp/finance.db');
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
-});
+// app.configure('development', function(){
+//   db = new Database('/tmp/finance.db');
+//   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+// });
 
-app.configure('tj', function(){
-  app.set('title', "TJ's Financial Management");
+app.configure('development', function(){
+  app.set('title', "Finances d'Olivier et Virginie");
   app.enable('cache views');
-  db = new Database('/Users/tj/dropbox/documents/finances-tj.db');
+  db = new Database('/Users/ovaillancourt/Dropbox/Finances-2012');
   app.use(express.errorHandler({ dumpExceptions: true }));
 });
 
